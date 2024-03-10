@@ -17,6 +17,6 @@ ___
 
 `python ingest.py`
 
-5. Run the script, to process data with Mistral LLL and return the answer: 
+5. Run the script, to process data with Mistral LLM and return the answer: 
 
 `python main.py "retrieve invoice number value"`

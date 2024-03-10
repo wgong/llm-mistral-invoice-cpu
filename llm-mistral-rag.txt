@@ -1,0 +1,17 @@
+
+############################################################
+Query:
+ what are names for seller and client
+==================================================
+Semantic search:
+ [Document(page_content='Invoice no: 61356291\nDate of issue:\n09/06/2012\nSeller:\nChapman, Kim and Green\n64731 James Branch\nSmithmouth, NC 26872\nTax Id: 949-84-9105\nIBAN: GB50ACIE59715038217063\nClient:\nRodriguez-Stevens\n2280 Angela Plain\nHortonshire, MS 93248\nTax Id: 939-98-8477\nITEMS\nNo.\nDescription\nQty\nUM\nNet price', metadata={'source': 'data\\invoice_1.pdf', 'page': 0}), Document(page_content='Description\nQty\nUM\nNet price\nNet worth\nVAT [%]\nGross\nworth\n \nWine Glasses Goblets Pair Clear\nGlass\n1.\n5,00\neach\n12,00\n 60,00\n 10%\n 66,00\n \nWith Hooks Stemware Storage\nMultiple Uses Iron Wine Rack\nHanging Glass\n2.\n4,00\neach\n28,08\n 112,32\n 10%\n 123,55\n \nReplacement Corkscrew Parts', metadata={'source': 'data\\invoice_1.pdf', 'page': 0})]
+	 [time] query_embeddings(): 6.79sec
+
+############################################################
+Query:
+ what are names for seller and client
+==================================================
+Answer:
+ Seller is Chapman, Kim and Green and the client is Rodriguez-Stevens.
+	 [time] setup_qa_chain(): 19.06sec
+	 [time] qa_chain(): 56.15sec

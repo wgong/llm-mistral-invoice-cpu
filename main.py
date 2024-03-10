@@ -3,6 +3,12 @@ import argparse
 from llm.wrapper import setup_qa_chain
 from llm.wrapper import query_embeddings
 
+file_log = "llm-mistral-rag.txt"
+
+def log_and_print(msg, file_log=file_log):
+    with open(file_log, "a+") as fp:
+        fp.write(msg + "\n")
+    print(msg)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -16,16 +22,23 @@ if __name__ == "__main__":
                         help='Enter True if you want to run semantic search, else False')
     args = parser.parse_args()
 
-    start = timeit.default_timer()
+    log_and_print('\n' + '#'*60)
+    query_msg = f'Query:\n {args.input}'
+    log_and_print(query_msg)  
     if args.semantic_search:
+        ts1 = timeit.default_timer()
         semantic_search = query_embeddings(args.input)
-        print(f'Semantic search: {semantic_search}')
-        print('='*50)
+        ts2 = timeit.default_timer()
+        log_and_print('='*50)
+        log_and_print(f'Semantic search:\n {semantic_search}')
+        log_and_print(f"\t [time] query_embeddings(): {(ts2-ts1):.2f}sec")
     else:
+        ts1 = timeit.default_timer()
         qa_chain = setup_qa_chain()
+        ts2 = timeit.default_timer()
         response = qa_chain({'query': args.input})
-        print(f'\nAnswer: {response["result"]}')
-        print('=' * 50)
-    end = timeit.default_timer()
-
-    print(f"Time to retrieve answer: {end - start}")
+        ts3 = timeit.default_timer()
+        log_and_print('=' * 50)
+        log_and_print(f'Answer:\n {response["result"]}')
+        log_and_print(f"\t [time] setup_qa_chain(): {(ts2-ts1):.2f}sec")
+        log_and_print(f"\t [time] qa_chain(): {(ts3-ts2):.2f}sec")

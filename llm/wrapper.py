@@ -1,4 +1,4 @@
-import box
+import box   # python-box
 import yaml
 
 from langchain.prompts import PromptTemplate
